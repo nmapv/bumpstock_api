@@ -8,13 +8,7 @@ namespace bumpstock_api.entity.Entity.Game
     public class Map : BaseEntity
     {
         public Competitive name { get; private set; }
-
-        public Map(int? id)
-        {
-            if (!id.HasValue) return;
-            this.id = id.Value;
-        }
-
+        
         public Map(int id, int name, DateTime? register_date)
         {
             this.id = id;
