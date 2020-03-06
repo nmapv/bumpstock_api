@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using bumpstock_api.repository.Repository.Public;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace bumpstock_api.repository.Repository.Base
@@ -15,12 +16,25 @@ namespace bumpstock_api.repository.Repository.Base
             _connectionString = connectionString;
         }
 
-        //private IAdministratorRepository _administratorRepository;
+        private IContactRepository _contactRepository;
+        private IPersonRepository _personRepository;
+        private IActivateContactRepository _activateContactRepository;
 
-        //public IAdministratorRepository administratorRepository
-        //{
-        //    get { return _administratorRepository ?? (_administratorRepository = new AdministratorRepository(openconnection())); }
-        //}
+        public IContactRepository contactRepository
+        {
+            get { return _contactRepository ?? (_contactRepository = new ContactRepository(openconnection())); }
+        }
+
+        public IPersonRepository personRepository
+        {
+            get { return _personRepository ?? (_personRepository = new PersonRepository(openconnection())); }
+        }
+
+        public IActivateContactRepository activateContactRepository
+        {
+            get { return _activateContactRepository ?? (_activateContactRepository = new ActivateContactRepository(openconnection())); }
+        }
+
 
         public void Commit()
         {
@@ -83,8 +97,9 @@ namespace bumpstock_api.repository.Repository.Base
 
         private void resetRepositories()
         {
-            //_administratorRepository = null;
-
+            _contactRepository = null;
+            _personRepository = null;
+            _activateContactRepository = null;
         }
     }
 }

@@ -1,17 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Service\Public\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\bumpstock_api.entity\bumpstock_api.entity.csproj" />
     <ProjectReference Include="..\bumpstock_api.infrastructure\bumpstock_api.infrastructure.csproj" />
     <ProjectReference Include="..\bumpstock_api.repository\bumpstock_api.repository.csproj" />
+    <ProjectReference Include="..\bumpstock_api.service\bumpstock_api.service.csproj" />
   </ItemGroup>
+
 
 </Project>
