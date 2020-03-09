@@ -12,12 +12,11 @@ namespace bumpstock_api.entity.Entity.Public
 
         public Contact(int id, string email, DateTime? register_date)
         {
-            var contractDDI = new Contract()
+            var contractEmail = new Contract()
                 .Requires()
-                .IsEmailOrEmpty(email, "contact", "email is required in contact")
-                .IsEmail(email, "contact", "email is invalid");
+                .IsEmailOrEmpty(email, this.GetType().Name.ToLower(), "Invalid mail");
 
-            AddNotifications(contractDDI);
+            AddNotifications(contractEmail);
 
             this.id = id;
             this.email = email;

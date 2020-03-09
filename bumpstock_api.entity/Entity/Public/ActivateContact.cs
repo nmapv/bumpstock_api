@@ -32,7 +32,7 @@ namespace bumpstock_api.entity.Entity.Public
         {
             var contractContactId = new Contract()
                 .Requires()
-                .IsFalse(contact_id <= 0, "activatecontact", "Invalid contact_id in activate contact");
+                .IsFalse(contact_id <= 0, this.GetType().Name.ToLower(), "Invalid contact_id in activate contact");
 
             AddNotifications(contractContactId);
 
@@ -47,11 +47,11 @@ namespace bumpstock_api.entity.Entity.Public
         {
             var contractContactId = new Contract()
                 .Requires()
-                .IsFalse(contact_id <= 0, "activatecontact", "Invalid contact_id in activate contact");
+                .IsFalse(contact_id <= 0, this.GetType().Name.ToLower(), "Invalid contact_id in activate contact");
 
             var contractCode = new Contract()
                 .Requires()
-                .IsFalse(activation_code <= 0 || (Math.Log10(activation_code) + 1) < 6, "activatecontact", "Invalid activation_code in activate contact");
+                .IsFalse(activation_code <= 0 || (Math.Log10(activation_code) + 1) < 6, this.GetType().Name.ToLower(), "Invalid activation_code in activate contact");
 
             AddNotifications(contractContactId);
             AddNotifications(contractCode);

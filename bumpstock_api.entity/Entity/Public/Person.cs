@@ -34,7 +34,7 @@ namespace bumpstock_api.entity.Entity.Public
         {
             var contractClaims = new Contract()
                 .Requires()
-                .IsNotNull(claims, "Person", "Invalid token for person");
+                .IsNotNull(claims, this.GetType().Name.ToLower(), "Invalid token for person");
 
             var claim_id = claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
             var claim_first_name = claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
@@ -43,12 +43,12 @@ namespace bumpstock_api.entity.Entity.Public
             var claim_role = claims.FirstOrDefault(x => x.Type == ClaimTypes.Role);
 
             contractClaims
-                .IsNotNull(claim_id, "Person", "Invalid token for person")
-                .IsNotNull(claim_first_name, "Person", "Invalid token for person")
-                .IsNotNull(claim_last_name, "Person", "Invalid token for person")
-                .IsNotNull(claim_hash, "Person", "Invalid token for person")
-                .IsNotNull(claim_role, "Person", "Invalid token for person")
-                .IsFalse(!int.TryParse(claim_id.Value, out int _id), "Person", "Invalid id for person");
+                .IsNotNull(claim_id, this.GetType().Name.ToLower(), "Invalid token for person")
+                .IsNotNull(claim_first_name, this.GetType().Name.ToLower(), "Invalid token for person")
+                .IsNotNull(claim_last_name, this.GetType().Name.ToLower(), "Invalid token for person")
+                .IsNotNull(claim_hash, this.GetType().Name.ToLower(), "Invalid token for person")
+                .IsNotNull(claim_role, this.GetType().Name.ToLower(), "Invalid token for person")
+                .IsFalse(!int.TryParse(claim_id.Value, out int _id), this.GetType().Name.ToLower(), "Invalid id for person");
 
             AddNotifications(contractClaims);
 
@@ -62,8 +62,8 @@ namespace bumpstock_api.entity.Entity.Public
         {
             var contractHash = new Contract()
               .Requires()
-              .IsFalse(hash.Length <= 0, "person", "Invalid hash in person")
-              .IsNotNullOrEmpty(hash, "person", "Hash is required in person");
+              .IsFalse(hash.Length <= 0, this.GetType().Name.ToLower(), "Invalid hash in person")
+              .IsNotNullOrEmpty(hash, this.GetType().Name.ToLower(), "Hash is required in person");
 
             AddNotifications(contractHash);
             this.hash = hash;
@@ -74,18 +74,18 @@ namespace bumpstock_api.entity.Entity.Public
         {
             var contractFirstName = new Contract()
                 .Requires()
-                .HasMaxLen(first_name, (40), "person", "Invalid first_name in person")
-                .HasMinLen(first_name, (5), "person", "Invalid first_name in person");
+                .HasMaxLen(first_name, (40), this.GetType().Name.ToLower(), "Invalid first_name in person")
+                .HasMinLen(first_name, (5), this.GetType().Name.ToLower(), "Invalid first_name in person");
 
             var contractLastName = new Contract()
                 .Requires()
-                .HasMaxLen(last_name, (40), "person", "Invalid last_name in person")
-                .HasMinLen(last_name, (5), "person", "Invalid last_name in person");
+                .HasMaxLen(last_name, (40), this.GetType().Name.ToLower(), "Invalid last_name in person")
+                .HasMinLen(last_name, (5), this.GetType().Name.ToLower(), "Invalid last_name in person");
 
             var contractHash = new Contract()
                 .Requires()
-                .IsFalse(hash.Length <= 0, "person", "Invalid hash in person")
-                .IsNotNullOrEmpty(hash, "person", "Hash is required in person");
+                .IsFalse(hash.Length <= 0, this.GetType().Name.ToLower(), "Invalid hash in person")
+                .IsNotNullOrEmpty(hash, this.GetType().Name.ToLower(), "Hash is required in person");
 
             AddNotifications(contractFirstName);
             AddNotifications(contractLastName);
