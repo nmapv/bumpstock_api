@@ -13,9 +13,9 @@ namespace bumpstock_api.repository.Repository.Public
         {
         }
 
-        public async Task<Contact> GetContactByNumber(Contact contact)
+        public async Task<Contact> GetContactByEmail(Contact contact)
         {
-            var res = await _connection.QueryAsync<Contact>(@"select * from Contact where ddi=@ddi and ddd=@ddd and cellphone=@cellphone", param: new { contact.ddi, contact.ddd, contact.cellphone }, transaction: _transaction);
+            var res = await _connection.QueryAsync<Contact>(@"select * from Contact where email=@email", param: new { contact.email }, transaction: _transaction);
             return res.FirstOrDefault();
         }
     }

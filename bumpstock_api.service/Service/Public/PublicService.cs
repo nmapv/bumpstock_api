@@ -52,7 +52,7 @@ namespace bumpstock_api.service.Service.Public
         {
             using (_unitOfWork)
             {
-                var res = await _unitOfWork.contactRepository.GetContactByNumber(contact);
+                var res = await _unitOfWork.contactRepository.GetContactByEmail(contact);
 
                 if (res != null)
                     contact = res;

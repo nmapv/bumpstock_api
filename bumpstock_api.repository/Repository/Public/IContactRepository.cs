@@ -6,6 +6,6 @@ namespace bumpstock_api.repository.Repository.Public
 {
     public interface IContactRepository : IRepository<Contact>
     {
-        Task<Contact> GetContactByNumber(Contact contact);
+        Task<Contact> GetContactByEmail(Contact contact);
     }
 }
