@@ -7,8 +7,10 @@ namespace bumpstock_api.entity.Entity.Game
     public class Team : BaseEntity
     {
         public string name { get; private set; }
+        public string logo { get; private set; }
+        public bool enabled { get; private set; }
 
-        public Team(int id, string name, DateTime? register_date)
+        public Team(int id, string name, string logo, bool enabled, DateTime? register_date)
         {
             var contractPerson = new Contract()
                 .Requires()
@@ -18,6 +20,8 @@ namespace bumpstock_api.entity.Entity.Game
 
             this.id = id;
             this.name = name;
+            this.logo = logo;
+            this.enabled = enabled;
             this.register_date = register_date ?? DateTime.Now;
         }
     }
