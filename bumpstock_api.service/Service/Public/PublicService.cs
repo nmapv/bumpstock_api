@@ -54,11 +54,11 @@ namespace bumpstock_api.service.Service.Public
             {
                 var res = await _unitOfWork.contactRepository.GetContactByEmail(contact);
 
-                if (res != null)
-                    contact = res;
-                else
-                    await _unitOfWork.contactRepository.Add(contact);
+                contact.ContactAlreadyExists(res != null);
+                if (contact.Invalid)
+                    return contact;
 
+                await _unitOfWork.contactRepository.Add(contact);
                 _unitOfWork.Commit();
 
                 var activeContact = new ActivateContact(contact.id);
