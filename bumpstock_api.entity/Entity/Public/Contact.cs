@@ -36,14 +36,14 @@ namespace bumpstock_api.entity.Entity.Public
         public void ContactAlreadyExists(bool exists)
         {
             var contract = new Contract()
-                .IsTrue(exists, this.GetType().Name.ToLower(), "Contact already exists");
+                .IsFalse(exists, this.GetType().Name.ToLower(), "Contact already exists");
 
             AddNotifications(contract);
         }
-
+        
         public bool ValidatePassowrd(string password)
         {
-            if (this.password.Decrypt().Equals(password))
+            if (this.password.Equals(password.Encrypt()))
                 return true;
 
             return false;

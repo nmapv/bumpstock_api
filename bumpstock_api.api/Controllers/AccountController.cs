@@ -28,10 +28,12 @@ namespace bumpstock_api.api.Controllers
             if (contact == null)
                 return BadRequest(new[] { new { property = "contact", message = "SyntaxError: JSON.parse: Your json is wrong" } });
 
+            if (contact.Valid)
+                contact = await _userService.AddContact(contact);
+
             if (contact.Invalid)
                 return BadRequest(contact.Notifications.ToArray());
 
-            contact = await _userService.AddContact(contact);
             return Ok(contact);
         }
 

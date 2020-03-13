@@ -55,6 +55,7 @@ namespace bumpstock_api.service.Service.Public
                 var res = await _unitOfWork.contactRepository.GetContactByEmail(contact);
 
                 contact.ContactAlreadyExists(res != null);
+
                 if (contact.Invalid)
                     return contact;
 
